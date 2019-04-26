@@ -9,7 +9,8 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import PrototypeScreen from "../screens/PrototypeScreen";
+import PrototypeListScreen from "../screens/PrototypeListScreen";
+import PrototypeRecyclerListScreen from "../screens/PrototypeRecyclerListScreen";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen
@@ -57,12 +58,26 @@ SettingsStack.navigationOptions = {
   )
 };
 
-const PrototypeStack = createStackNavigator({
-  Prototype: PrototypeScreen
+const PrototypeListStack = createStackNavigator({
+  PrototypeList: PrototypeListScreen
 });
 
-PrototypeStack.navigationOptions = {
-  tabBarLabel: "Protoype",
+PrototypeListStack.navigationOptions = {
+  tabBarLabel: "List",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-options" : "md-options"}
+    />
+  )
+};
+
+const PrototypeRecyclerListStack = createStackNavigator({
+  PrototypeRecyclerList: PrototypeRecyclerListScreen
+});
+
+PrototypeRecyclerListStack.navigationOptions = {
+  tabBarLabel: "RecyclerList",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -75,5 +90,6 @@ export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
-  PrototypeStack
+  PrototypeListStack,
+  PrototypeRecyclerListStack
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import TestList from "../components/TestList";
+import TestRecyclerList from "../components/TestRecyclerList";
 
 export default class ProtoypeRecyclerListScreen extends React.Component {
   static navigationOptions = {
@@ -7,6 +7,6 @@ export default class ProtoypeRecyclerListScreen extends React.Component {
   };
 
   render() {
-    return <TestList />;
+    return <TestRecyclerList />;
   }
 }
