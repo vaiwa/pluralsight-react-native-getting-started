@@ -1,20 +1,27 @@
 import React, { Component } from "react";
-import { View, Button, ScrollView, Text } from "react-native";
+import { View, Button, ScrollView, Text, Image } from "react-native";
 
 const N = 200;
 
-let containerCount = 0;
-
-class CellContainer extends React.Component {
-  constructor(args) {
-    super(args);
-    this._containerId = containerCount++;
+class CellContainer extends Component {
+  constructor(props) {
+    super(props);
   }
   render() {
+    const index = this.props.index;
+    const img = require(`../assets/images/icons/1.png`);
     return (
-      <View {...this.props}>
-        {this.props.children}
-        <Text>Cell Id: {this._containerId}</Text>
+      <View
+        {...this.props}
+        style={{
+          borderBottomColor: "slateblue",
+          borderBottomWidth: 1
+        }}
+      >
+        <Image style={{ width: 50, height: 50 }} source={img} />
+        <Text>
+          Cell {index} {img}
+        </Text>
       </View>
     );
   }
@@ -31,19 +38,7 @@ export default class TestList extends Component {
     this.state = state;
   }
 
-  row = i => (
-    <CellContainer key={i}>
-      <Button
-        title={`${i}`}
-        onPress={() => {
-          this.setState(prevState => {
-            prevState.rows[i] = undefined;
-            return prevState;
-          });
-        }}
-      />
-    </CellContainer>
-  );
+  row = i => <CellContainer key={i} index={i} />;
 
   render() {
     return <ScrollView>{Object.values(this.state.rows)}</ScrollView>;
